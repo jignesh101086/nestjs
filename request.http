@@ -1,0 +1,46 @@
+### This file is just for Document purpose and development testing, It is not for Production commit
+
+### Sign in for Auth
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Create form
+
+POST http://localhost:3000/v1/form
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MTI2NDUyMTEsImV4cCI6MTcxMjY0NTMzMX0.dJiZY1Qln2eYuvt7krq_IMxEM8b4m4eUIf3oLpguNVg
+
+{
+    "uniqueId": "21d44798-933b-43ea-8568-ca374e74ea55",
+    "title": "user5",
+    "name": "user name 5",
+    "email": "test5@test.com",
+    "phonenumber": "+919876543215",
+    "isGraduate": true
+}
+
+
+### Create update form
+
+PATCH http://localhost:3000/v1/fill_data/3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MTI2MDE4NDEsImV4cCI6MTcxMjYwMTk2MX0.PTbPMRHM6pbHZ-4xlJpq4-JxdrMFZLZ3tv35Th9XAlw
+
+{
+    "uniqueId": "21d44798-933b-43ea-8568-ca374e74ea53",
+    "name": "user name 3",
+    "email": "test3@test.com",
+    "phonenumber": "+919876543213",
+    "isGraduate": true
+}
+
+### Create update form
+
+GET http://localhost:3000/v1/fill_data?form_title=user1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MTI2NDUyMTEsImV4cCI6MTcxMjY0NTMzMX0.dJiZY1Qln2eYuvt7krq_IMxEM8b4m4eUIf3oLpguNVg
