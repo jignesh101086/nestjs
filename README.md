@@ -62,5 +62,5 @@ This NestJS Assessment project encompasses authentication and form modules, alon
 ### Form Management:
 
 - `POST /form`: Create a new form.
-- `PATCH /fill_data/:id`: Update an existing form.
-- `GET /fill_data?form_title=:param`: Get form by title.
+- `POST /fill_data?form_title=[form title]`: Fill form data.
+- `GET /fill_data?form_title=:param`: Get forms by title.

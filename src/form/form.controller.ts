@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Patch, Post, Query, Param, UseGuards } from '@nestjs/common';
-import { UpdateFormDto } from './dtos/update-form.dto';
 import { CreateFormDto } from './dtos/create-form.dto';
 import { FormService } from './form.service';
 import { AuthGuard } from './../auth/auth.guard';
 import { ApiTags, ApiResponse, ApiParam, ApiBody, ApiBearerAuth } from '@nestjs/swagger';
+import { FillFormDto } from './dtos/fill-form.dto';
 
 @Controller('v1')
 @UseGuards(AuthGuard)
@@ -21,32 +21,31 @@ export class FormController {
     @Post('form')
     @ApiBody({ description: 'Data for creating the form', type: CreateFormDto })
     @ApiResponse({ status: 201, description: 'Form created successfully.' })
-    createForm(@Body() body: CreateFormDto) {
+    createForm(@Body() body) {
         return this.formService.createForm(body);
     }
 
     /**
-     * Update an existing form
+     * Fill dynamic form
      * @param id The ID of the form to update
      * @param UpdateFormDto Data for updating the form
      * @returns The updated form
      */
-    @Patch('fill_data/:id')
-    @ApiParam({ name: 'id', description: 'The ID of the form to update' })
-    @ApiBody({ description: 'Data for updating the user', type: UpdateFormDto })
-    @ApiResponse({ status: 200, description: 'Form updated successfully.' })
-    updateForm(@Param('id') id: string, @Body() body: UpdateFormDto) {
-        return this.formService.updateForm(parseInt(id), body);
+    @Post('fill_data')
+    @ApiBody({ description: 'Data for fill form', type: FillFormDto })
+    @ApiResponse({ status: 200, description: 'Form filled successfully.' })
+    updateForm(@Query('form_title') title: string, @Body() body: FillFormDto) {
+        return this.formService.fillForm(title, body);
     }
 
     /**
-     * Retrieve form
-     * @returns List of form
+     * Retrieve form values
+     * @returns List of form rows
      */
     @Get('fill_data')
     @ApiResponse({ status: 200, description: 'List of form retrieved successfully.' })
     getForms(@Query('form_title') title) {
-        return this.formService.getForms(title);
+        return this.formService.getFormValues(title);
 
     }
 }

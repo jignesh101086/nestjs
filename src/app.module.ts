@@ -7,6 +7,8 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
+import { FormFields } from './form/entities/formfield.entity';
+import { FormValues } from './form/entities/formvalue.entity';
 
 @Module({
   imports: [
@@ -18,12 +20,12 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [Form],
+      entities: [Form, FormFields, FormValues],
       synchronize: true,    /**Only for dev not for Prod */
     }),
     ThrottlerModule.forRoot([{
       ttl: 10000,
-      limit: 2,
+      limit: 4,
     }]),
     AuthModule, 
     FormModule, UsersModule
