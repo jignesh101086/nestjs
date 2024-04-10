@@ -11,6 +11,7 @@ This NestJS Assessment project encompasses authentication and form modules, alon
 - TypeORM integration for database management with MySQL
 - Nest Throttle for rate limiting requests
 - Swagger for API documentation
+- E2E Testing
 
 ## Installation
 
